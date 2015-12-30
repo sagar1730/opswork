@@ -1,0 +1,13 @@
+{
+  "network": {
+    "servers": [ "172.30.0.14:5000" ],
+    "ssl ca": "/etc/ssl/certs/logstash-forwarder.crt",
+    "timeout": 15
+  },
+  "files": [
+    {
+      "paths": [ "/var/log/syslog" ],
+      "fields": { "type": "iptables" }
+    }
+  ]
+}

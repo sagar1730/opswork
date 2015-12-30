@@ -1,0 +1,18 @@
+###################################  Input to Logstash ##########################################
+
+input {
+  kafka {
+    zk_connect => '<%= node['logstash_in']['kafka']['zk_connect'] %>'
+    group_id => '<%= node['logstash_in']['kafka']['group_id'] %>'
+    type => '<%= node['logstash_in']['kafka']['type'] %>'
+    topic_id => '<%= node['logstash_in']['kafka']['topic_id']  %>'
+   }
+}
+
+##################################  Output to Logstash  #########################################
+
+output {
+    elasticsearch {
+         hosts => '<%= node['logstash_in']['elasticsearch_hosts'] %>'
+    }
+}

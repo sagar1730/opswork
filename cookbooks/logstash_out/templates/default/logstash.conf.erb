@@ -1,0 +1,19 @@
+
+################################## Input to Logstash ########################################
+input {
+  beats {
+    port => '<%= @port %>'
+    type => '<%= @type %>'
+    ssl => '<%= node['logstash']['beats']['ssl'] %>'
+   }
+}
+
+################################## Output to Logstash ########################################
+output {
+    kafka {
+         bootstrap_servers => '<%= @bootstrap_servers %>'
+         topic_id => '<%= @topic_id %>'
+         client_id => '<%= node['logstash']['kafka']['client_id'] %>'
+       # producer_type => 'sync'
+    }
+}

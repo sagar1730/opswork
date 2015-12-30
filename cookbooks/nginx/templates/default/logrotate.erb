@@ -1,0 +1,20 @@
+<%= node[:nginx][:log_dir] %>/*.log {
+        <%=@node[:logrotate][:frequency]%>
+        missingok
+        rotate <%= node[:logrotate][:rotate] %>
+        size <%= node[:logrotate][:maxsize] %>
+        compress
+        <% if node[:logrotate][:dateformat] -%>
+        dateext
+        dateformat <%= node[:logrotate][:dateformat] %>
+        <% end -%>
+        notifempty
+        prerotate
+        <%= node[:logrotate][:prerotate]%>
+        endscript
+        postrotate
+        <%= node[:logrotate][:postrotate]%>
+        endscript
+        copytruncate
+        sharedscripts
+}
